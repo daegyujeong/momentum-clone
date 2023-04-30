@@ -291,4 +291,12 @@ input::placeholder {
   line-height: 50px;
   height: 50px;
 }
+#quote
+{
+  font-size: 30px;
+  color:white;
+}
 
+.hidden {
+  display: none;
+}

@@ -3,6 +3,7 @@ const toDoInput = document.querySelector("#todo-form input");
 const toDoList = document.getElementById("todo-list");
 const notToDoList = document.getElementById("not-todo-list");
 const comleteList = document.getElementById("complete-list");
+const pendingList = document.getElementById("pending-list");
 const toDoRadioGroup = document.querySelector(".todo-radiogroup__todo");
 const notToDoRadioGroup = document.querySelector(".todo-radiogroup__not-todo");
 
@@ -20,13 +21,94 @@ function deleteToDo(event) {
   toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
   saveToDos();
 }
+function returnToDo(event) {
+  const li = event.target.parentElement;
+  const returnButton = li.querySelector(".todo-return-button");
+  const completeButton = document.createElement("button");
+  if(li.parentElement === comleteList)
+  {
+    completeButton.classList.add("todo-complete-button");
+    completeButton.innerText = "⭕️";
+    completeButton.addEventListener("click", comleteToDo);
+    li.appendChild(completeButton);
+  }  
+
+  const pendingButton = document.createElement("button");
+  pendingButton.classList.add("todo-pending-button");
+  pendingButton.innerText = "❗️";
+  pendingButton.addEventListener("click", deleteToDo);
+  li.appendChild(pendingButton);  
+  returnButton.remove();
+  if(li.classList.contains("todo"))
+  {
+    li.classList.remove("todo");
+    toDoList.appendChild(li);
+  }
+    else
+  {
+    li.classList.remove("not-todo");
+    notToDoList.appendChild(li);
+  }   
+  saveToDos();
+
+  // toDoList.appendChild(li); 
+  // const returnButton = document.createElement("button");
+  // const completeButton = li.querySelector(".todo-complete-button");
+  // const pendingButton = li.querySelector(".todo-pending-button");
+  // returnButton.classList.add("todo-return-button");
+  // returnButton.innerText = "🔺";
+  // returnButton.addEventListener("click", returnToDo);
+  // li.appendChild(returnButton);
+  // li.classList.add("completetodo");
+  // completeButton.remove();
+  // pendingButton.remove();
+}
+
 function comleteToDo(event) {
   const li = event.target.parentElement;
+  if(li.parentElement === toDoList)
+  {
+  li.classList.add("todo");
+  }
+  else if((li.parentElement === notToDoList))
+  {
+    li.classList.add("not-todo");
+  }
   comleteList.appendChild(li); 
+  const returnButton = document.createElement("button");
   const completeButton = li.querySelector(".todo-complete-button");
-  li.classList.add("completetodo");
+  const pendingButton = li.querySelector(".todo-pending-button");
+  returnButton.classList.add("todo-return-button");
+  returnButton.innerText = "🔺";
+  returnButton.addEventListener("click", returnToDo);
+  li.appendChild(returnButton);
   completeButton.remove();
+  pendingButton.remove();
+  saveToDos();
 }
+function pendingTodo(event) {
+  const li = event.target.parentElement;
+  if(li.parentElement === toDoList)
+  {
+  li.classList.add("todo");
+  }
+  else
+  {
+    li.classList.add("not-todo");
+  }
+  pendingList.appendChild(li); 
+  const returnButton = document.createElement("button");
+  // const completeButton = li.querySelector(".todo-complete-button");
+  const pendingButton = li.querySelector(".todo-pending-button");
+  returnButton.classList.add("todo-return-button");
+  returnButton.innerText = "🔺";
+  returnButton.addEventListener("click", returnToDo);
+  li.appendChild(returnButton);
+  // completeButton.remove();
+  pendingButton.remove();
+  saveToDos();
+}
+
 
 function paintToDo(newTodo) {
   const li = document.createElement("li");
@@ -42,9 +124,9 @@ function paintToDo(newTodo) {
   completeButton.innerText = "⭕️";
   completeButton.addEventListener("click", comleteToDo);
   const pendingButton = document.createElement("button");
-  completeButton.classList.add("todo-pending-button");
+  pendingButton.classList.add("todo-pending-button");
   pendingButton.innerText = "❗️";
-  pendingButton.addEventListener("click", deleteToDo);
+  pendingButton.addEventListener("click", pendingTodo);
   li.appendChild(span);
   li.appendChild(deleteButton);
   li.appendChild(completeButton);
@@ -100,8 +182,8 @@ toDoRadioGroup.addEventListener("click", handleToDoRadioClick);
 notToDoRadioGroup.addEventListener("click", handleToDoRadioClick);
 
 function init() {
+  const savedToDos = localStorage.getItem(TODOS_KEY);
   if (savedToDos !== null) {
-    const savedToDos = localStorage.getItem(TODOS_KEY);
     const parsedToDos = JSON.parse(savedToDos);
     toDos = parsedToDos;
     parsedToDos.forEach(paintToDo);

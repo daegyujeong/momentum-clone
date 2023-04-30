@@ -8,10 +8,10 @@ const finedustPM2_5Status = document.querySelector(".js-finedust-pm2_5-status");
 const API_KEY = "ec39a77387f7ac16451fbdd237c17d0f";
 const colors = ["#FF3E3E","#FFA238","#2DD540","#6B7EFF"];
 const fineDustStatuses = {
-  WORST: 1,
-  BED: 2,
-  NORMAL: 3,
-  GOOD: 4
+  WORST: 0,
+  BED: 1,
+  NORMAL: 2,
+  GOOD: 3
 }
 function paintImage(iconId) {
   const image = new Image();

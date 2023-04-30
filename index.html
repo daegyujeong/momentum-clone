@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Momentum App</title>
+  </head>
+  <body>
+    <h2 id="clock">00:00:00</h2>
+    <form class="hidden" id="login-form">
+      <input
+        required
+        class="login-form__name"
+        maxlength="15"
+        type="text"
+        placeholder="What is your name?"
+      />
+      <input type="submit" value="Log In" />
+    </form>
+    <h1 class="hidden" id="greeting"></h1>
+    <form id="todo-form">
+      <input
+        class="todo-form__todo"
+        type="text"
+        placeholder="Write and Select a To Do or Not To Do and Press Enter"
+        required
+      />
+      <fieldset>
+        <div class="todo-form__todo-radiogroup">
+          <!-- Selected Option 추가 -->
+          <div class="todo-radiogroup__todo select">
+            <input
+              type="radio"
+              id="todo"
+              name="todo-option"
+              value="todo"
+              checked
+            />
+            <label for="todo">To Do</label>
+          </div>
+          <div class="todo-radiogroup__not-todo unselect">
+            <input
+              type="radio"
+              id="not-todo"
+              name="todo-option"
+              value="not-todo"
+            />
+            <label for="not-todo">Not To Do</label>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+    <div class="my-list">
+      <div class="my-list__row">
+        <h3 class="todo-list-title">To Do List</h3>
+        <ul id="todo-list"></ul>
+      </div>
+      <div class="my-list__row">
+        <h3 class="nottodo-list-title">Not To Do List</h3>
+        <ul id="not-todo-list"></ul>
+      </div>
+    </div>
+    <div class="my-list">
+      <div class="my-list__row">
+        <h3 class="pending-list-title">Pending List</h3>
+        <ul id="pending-list"></ul>
+      </div>
+    </div>
+    <div class="my-list">
+      <div class="my-list__row">
+        <h3 class="complete-list-title">Complete List</h3>
+        <ul id="complete-list"></ul>
+      </div>
+    </div>
+    <div id="quote">
+      <span></span>
+      <span></span>
+    </div>
+    <div id="weather">
+      <span class="js-weather weather"></span>
+      <span class="js-city city"></span>
+      <div class="js-weatherImg"></div>
+    </div>
+    <div id="airquality-pm10">
+      <span>미세먼지(PM10)</span>
+      <span class="js-finedust-pm10 finedust-pm10"></span>
+      <span class="js-finedust-pm10-status finedust-pm10-status"></span>
+    </div>
+    <div id="airquality-pm2_5">
+      <span>초미세먼지(PM2.5)</span>
+      <span class="js-finedust-pm2_5 finedust-pm2_5"></span>
+      <span class="js-finedust-pm2_5-status finedust-pm2_5-status"></span>
+    </div>
+    <script src="js/greetings.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/quotes.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/todo.js"></script>
+    <script src="js/weather.js"></script>
+  </body>
+</html>

@@ -257,6 +257,10 @@ input::placeholder {
   width: 135px;
   font-size: 13pt;
 }
+li
+{
+  background-color: rgb(255, 255, 255);
+}
 #todo-list, #not-todo-list, #pending-list, #complete-list {
   padding: 0;
   list-style: none;
@@ -267,7 +271,6 @@ input::placeholder {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background-color: rgb(255, 255, 255);
 }
 #todo-list li span, #not-todo-list li span, #pending-list li span, #complete-list li span{
   width: 250px;
@@ -315,6 +318,12 @@ input::placeholder {
   text-align: center;
   line-height: 40px;
   height: 40px;
+}
+.todo{
+  background-color: rgb(131, 131, 255);
+}
+.not-todo{
+  background-color: rgb(255, 121, 121);
 }
 #quote
 {

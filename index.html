@@ -48,9 +48,12 @@
         type="text"
         placeholder="What is your name?"
       />
-      <input type="submit" value="Log In" />
+      <input type="submit" class="button" value="Log In" />
     </form>
-    <h1 class="hidden" id="greeting"></h1>
+    <div class="greeting-container">
+      <h1 class="hidden" id="greeting"></h1>
+      <button id="edit-username" class="hidden button">Edit User</button>
+    </div>
     <div class="my-list">
       <div class="my-list__row">
         <h3 class="todo-list-title">To Do List</h3>

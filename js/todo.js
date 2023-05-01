@@ -30,21 +30,23 @@ function deleteToDo(event) {
   console.log(toDos);
   toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
   toDos = toDos.filter((toDo) => toDo.id !== undefined);
-  notToDos = notToDos.filter((toDo) => notToDos.id !== parseInt(li.id));
-  notToDos = notToDos.filter((toDo) => notToDos.id !== undefined);
-  pendingToDos = pendingToDos.filter((toDo) => pendingToDos.id !== parseInt(li.id));
-  pendingToDos = pendingToDos.filter((toDo) => pendingToDos.id !== undefined);
-  completeToDos = completeToDos.filter((toDo) => completeToDos.id !== parseInt(li.id));
-  completeToDos = completeToDos.filter((toDo) => completeToDos.id !== undefined);
+  notToDos = notToDos.filter((notToDo) => notToDo.id !== parseInt(li.id));
+  notToDos = notToDos.filter((notToDo) => notToDo.id !== undefined);
+  pendingToDos = pendingToDos.filter((pendingToDo) => pendingToDo.id !== parseInt(li.id));
+  pendingToDos = pendingToDos.filter((pendingToDo) => pendingToDo.id !== undefined);
+  completeToDos = completeToDos.filter((completeToDo) => completeToDo.id !== parseInt(li.id));
+  completeToDos = completeToDos.filter((completeToDo) => completeToDo.id !== undefined);
   saveToDos();
 }
 function returnToDo(event) {
   const li = event.target.parentElement;
   const returnButton = li.querySelector(".todo-return-button");
   const completeButton = document.createElement("button");
+  const pendingButton = document.createElement("button");
+  const span = li.querySelector("span");
   if(li.parentElement === completeList)
   {
-    completeToDos = completeToDos.filter((toDo) => completeToDos.id !== parseInt(li.id));
+    completeToDos = completeToDos.filter((completeToDo) => completeToDo.id !== parseInt(li.id));
     completeButton.classList.add("todo-complete-button");
     completeButton.innerText = "⭕️";
     completeButton.addEventListener("click", comleteToDo);
@@ -52,26 +54,36 @@ function returnToDo(event) {
   }  
   else
   {
-    pendingToDos = pendingToDos.filter((toDo) => pendingToDos.id !== parseInt(li.id));
+    pendingToDos = pendingToDos.filter((pendingToDo) => pendingToDo.id !== parseInt(li.id));
   }
 
-  const pendingButton = document.createElement("button");
   pendingButton.classList.add("todo-pending-button");
   pendingButton.innerText = "❗️";
   pendingButton.addEventListener("click", pendingTodo);
   li.appendChild(pendingButton);  
   returnButton.remove();
+
+
   if(li.classList.contains("todo"))
   {
     li.classList.remove("todo");
     toDoList.appendChild(li);
-    toDos.push(li);
+    const newTodoObj = {
+      text: span.innerText,
+      id: parseInt(li.id),
+    };
+    toDos.push(newTodoObj);
+
   }
     else
   {
     li.classList.remove("not-todo");
     notToDoList.appendChild(li);
-    notToDos.push(li);
+    const newTodoObj = {
+      text: span.innerText,
+      id: parseInt(li.id),
+    };
+    notToDos.push(newTodoObj);    
   }   
   saveToDos();
 
@@ -109,7 +121,7 @@ function comleteToDo(event) {
       id: parseInt(li.id),
       class: "not-todo",
     };
-    notToDos = notToDos.filter((toDo) => notToDos.id !== parseInt(li.id));
+    notToDos = notToDos.filter((notToDo) => notToDo.id !== parseInt(li.id));
     li.classList.add(newTodoObj.class);
     completeToDos.push(newTodoObj);
   }
@@ -126,7 +138,6 @@ function comleteToDo(event) {
     }
     else{
       classname = "";
-
     }
     const newTodoObj = {
       text: span.innerText,
@@ -150,14 +161,30 @@ function comleteToDo(event) {
 }
 function pendingTodo(event) {
   const li = event.target.parentElement;
+  const span = li.querySelector("span");
   if(li.parentElement === toDoList)
   {
-  li.classList.add("todo");
+    const newTodoObj = {
+      text: span.innerText,
+      id: parseInt(li.id),
+      class: "todo",
+    };
+    toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
+    li.classList.add(newTodoObj.class);  
+    pendingToDos.push(newTodoObj);
   }
-  else
+  else if((li.parentElement === notToDoList))
   {
-    li.classList.add("not-todo");
+    const newTodoObj = {
+      text: span.innerText,
+      id: parseInt(li.id),
+      class: "not-todo",
+    };
+    notToDos = notToDos.filter((notToDo) => notToDo.id !== parseInt(li.id));
+    li.classList.add(newTodoObj.class);
+    pendingToDos.push(newTodoObj);
   }
+
   pendingList.appendChild(li); 
   const returnButton = document.createElement("button");
   // const completeButton = li.querySelector(".todo-complete-button");
@@ -232,13 +259,21 @@ function paintToDo(Todo,TodoType) {
   completeButton.addEventListener("click", comleteToDo);
   li.appendChild(completeButton);
   }
-  if(TodoType !== PENDING_KEY)
+  if(TodoType !== PENDING_KEY && TodoType !== COMPLETE_KEY)
   {
     const pendingButton = document.createElement("button");
     pendingButton.classList.add("todo-pending-button");
     pendingButton.innerText = "❗️";
     pendingButton.addEventListener("click", pendingTodo);
     li.appendChild(pendingButton);
+  }
+  if(TodoType === COMPLETE_KEY)
+  {
+    const returnButton = document.createElement("button");
+    returnButton.classList.add("todo-return-button");
+    returnButton.innerText = "🔺";
+    returnButton.addEventListener("click", returnToDo);
+    li.appendChild(returnButton);
   }
   if(TodoType === TODOS_KEY)
   {

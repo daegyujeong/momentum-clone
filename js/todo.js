@@ -267,7 +267,7 @@ function paintToDo(Todo,TodoType) {
     pendingButton.addEventListener("click", pendingTodo);
     li.appendChild(pendingButton);
   }
-  if(TodoType === COMPLETE_KEY)
+  if(TodoType === PENDING_KEY || TodoType === COMPLETE_KEY)
   {
     const returnButton = document.createElement("button");
     returnButton.classList.add("todo-return-button");

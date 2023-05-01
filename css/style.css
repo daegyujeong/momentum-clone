@@ -12,11 +12,11 @@ body {
   transition: color 0.5s ease-in-out;
 } */
 #clock{
-  font-size:150px;
+  font-size:110px;
   color:black;
-  opacity: 75%;
+  opacity: 70%;
   position: absolute;
-  top: 250px;
+  top: 130px;
   margin: 0px;
   
 }
@@ -33,19 +33,22 @@ body {
   border-radius: 15px;
   text-align: center;
 }
-.greetings {
-  color: white;
-  width: 200px;
-  height: 40px;
-  color: white;
-  margin-bottom: 30px;
-}
 #todo-form {
   display:flex;
   justify-content: space-evenly;
   align-items: center;
-  margin-bottom: 160px;
+  margin-top: 20px;
+  margin-bottom: 150px;
   width: 650px;
+}
+#greeting {
+  color: white;
+  width: 200px;
+  height: 40px;
+  position: absolute;
+  top: 210px;
+  font-size: 50px;
+  opacity: 70%;
 }
 #todo-form .todo-form__todo {
   border-top: none;
@@ -122,6 +125,7 @@ fieldset{
   display: flex;
   justify-content: space-around;
   width: 70%;
+  margin-top:40px;
 
 }
 

@@ -18,6 +18,9 @@ body {
   position: absolute;
   top: 110px;
   margin: 0px;
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   
 }
 #todo-form {
@@ -51,6 +54,10 @@ body {
   height: 50px;
   font-size: 50px;
   opacity: 70%;
+  /* color: transparent; */
+  /* background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
 }
 .greeting-container {
   position: absolute;
@@ -76,9 +83,6 @@ body {
   border-left: none;
   border-right: none;
   border: none;
-  /* border-width: 2px;
-  border-style: solid; */
-  border-color: rgb(98, 116, 253);
   background-color: #008cff7e;
   width: 400px;
   height: 60px;

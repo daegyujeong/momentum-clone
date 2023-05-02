@@ -16,7 +16,7 @@ body {
   color:black;
   opacity: 70%;
   position: absolute;
-  top: 110px;
+  top: 100px;
   margin: 0px;
   background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
   -webkit-background-clip: text;
@@ -33,7 +33,7 @@ body {
 }
 #login-form {
   position: absolute;
-  top: 200px;
+  top: 210px;
 }
 #login-form .login-form__name {
   border-top: none;
@@ -54,10 +54,7 @@ body {
   height: 50px;
   font-size: 50px;
   opacity: 70%;
-  /* color: transparent; */
-  /* background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
+  line-height: 50px;
 }
 .greeting-container {
   position: absolute;

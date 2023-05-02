@@ -147,14 +147,19 @@ function comleteToDo(event) {
     pendingToDos = pendingToDos.filter((toDo) => pendingToDos.id !== parseInt(li.id));
     completeToDos.push(newTodoObj);
   }
-  completeList.appendChild(li); 
-  const returnButton = document.createElement("button");
   const completeButton = li.querySelector(".todo-complete-button");
   const pendingButton = li.querySelector(".todo-pending-button");
-  returnButton.classList.add("todo-return-button");
-  returnButton.innerText = "🔺";
-  returnButton.addEventListener("click", returnToDo);
-  li.appendChild(returnButton);
+  if(li.parentElement !== pendingList)
+  {
+    console.log(li.parentElement);
+    const returnButton = document.createElement("button");
+    returnButton.classList.add("todo-return-button");
+    returnButton.innerText = "🔺";
+    returnButton.addEventListener("click", returnToDo);
+    li.appendChild(returnButton);
+  }
+  completeList.appendChild(li); 
+
   completeButton.remove();
   pendingButton.remove();
   saveToDos();
